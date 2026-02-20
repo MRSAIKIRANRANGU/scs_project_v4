@@ -1,0 +1,137 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import { animate, motion, useInView } from "framer-motion";
+
+const stats = [
+  { value: "22", label: "States" },
+  { value: "248", label: "Cities" },
+  { value: "40+", label: "Years" },
+  { value: "950", label: "Schools" },
+  { value: "55K+", label: "Staff" },
+  { value: "9.5L+", label: "Students" },
+];
+
+const statsBackgroundImage =
+  "https://images.pexels.com/photos/18012462/pexels-photo-18012462.jpeg?auto=compress&cs=tinysrgb&w=2000";
+
+const parseStatValue = (value: string) => {
+  const match = value.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
+  if (!match) {
+    return { numeric: 0, suffix: value, decimals: 0 };
+  }
+
+  const numeric = Number(match[1]);
+  const suffix = match[2] ?? "";
+  const decimals = match[1].includes(".") ? match[1].split(".")[1].length : 0;
+
+  return { numeric, suffix, decimals };
+};
+
+type StatCardProps = {
+  value: string;
+  label: string;
+  delay: number;
+  isInView: boolean;
+};
+
+const StatCard = ({ value, label, delay, isInView }: StatCardProps) => {
+  const { numeric, suffix, decimals } = useMemo(() => parseStatValue(value), [value]);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) {
+      setDisplayValue(0);
+      return undefined;
+    }
+
+    const controls = animate(0, numeric, {
+      duration: 1.4,
+      ease: "easeOut",
+      delay,
+      onUpdate: (latest) => {
+        setDisplayValue(latest);
+      },
+    });
+
+    return () => controls.stop();
+  }, [delay, isInView, numeric]);
+
+  const formattedValue =
+    decimals > 0 ? displayValue.toFixed(decimals) : Math.round(displayValue).toString();
+
+  return (
+    <motion.div
+      className="rounded-2xl border border-white/10 bg-white/5 px-5 py-6 text-center shadow-[0_20px_45px_rgba(8,26,46,0.35)] backdrop-blur-sm"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+    >
+      <div className="text-4xl md:text-5xl font-serif font-semibold text-accent mb-2">
+        {formattedValue}
+        {suffix}
+      </div>
+      <div className="text-primary-foreground/70 text-xs uppercase tracking-[0.35em] font-medium">
+        {label}
+      </div>
+    </motion.div>
+  );
+};
+
+const StatsSection = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  return (
+    <section ref={sectionRef} className="py-24 bg-hero relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${statsBackgroundImage})` }}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,26,46,0.35),rgba(8,26,46,0.55))]" />
+      </div>
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-accent blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-accent blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-accent shadow-[0_10px_30px_rgba(13,59,102,0.2)]">
+            At a Glance
+          </span>
+          <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-primary-foreground">
+            Our{" "}
+            <span className="relative inline-flex">
+              Impact in Numbers
+              <span className="absolute -bottom-2 left-0 right-0 h-2 rounded-full bg-gradient-to-r from-accent/80 via-accent/40 to-transparent" />
+            </span>
+          </h2>
+          <p className="mt-4 text-sm md:text-base text-primary-foreground/70 max-w-2xl mx-auto">
+            A snapshot of the scale, reach, and community that make our learning
+            ecosystem thrive across regions.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {stats.map((stat, i) => (
+            <StatCard
+              key={stat.label}
+              value={stat.value}
+              label={stat.label}
+              delay={i * 0.08}
+              isInView={isInView}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StatsSection;
