@@ -6,7 +6,7 @@ const achievements = [
     icon: Trophy,
     category: "Academics",
     title: "Sri Chaitanya's World Record at NASA",
-    description: "Once again No.1 — our students continue to break world records and create history.",
+    description: "Once again No.1 - our students continue to break world records and create history.",
   },
   {
     icon: Award,
@@ -19,6 +19,24 @@ const achievements = [
     category: "Sports",
     title: "National-Level Sports Achievements",
     description: "Multiple state and national level achievements across athletics, cricket, and more.",
+  },
+  {
+    icon: Trophy,
+    category: "Innovation",
+    title: "STEM Challenge Champions",
+    description: "Student teams secured top honors in national STEM innovation challenges.",
+  },
+  {
+    icon: Award,
+    category: "Leadership",
+    title: "Young Leaders Summit",
+    description: "Recognized for community leadership and impact-driven initiatives.",
+  },
+  {
+    icon: Medal,
+    category: "Arts",
+    title: "Creative Excellence Awards",
+    description: "Honors in design, music, and performance at inter-school events.",
   },
 ];
 
@@ -39,34 +57,58 @@ const AchievementsSection = () => {
             Our{" "}
             <span className="relative inline-flex">
               Achievements
-              <span className="absolute -bottom-2 left-0 right-0 h-2 rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent" />
+              <motion.span
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent"
+              />
             </span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {achievements.map((item, i) => (
-            <motion.div
-              key={item.title}
-              className="relative bg-card rounded-2xl overflow-hidden border border-border group hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-            >
-              <div className="h-2 bg-red-gradient" />
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <item.icon className="w-5 h-5 text-accent" />
-                  <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                    {item.category}
-                  </span>
+        <div className="achievement-marquee">
+          <div className="achievement-marquee__track">
+            {achievements.map((item) => (
+              <div
+                key={item.title}
+                className="achievement-card flex-shrink-0 w-[260px] md:w-[320px] min-h-[220px] relative bg-card rounded-2xl overflow-hidden border border-border group hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500"
+              >
+                <div className="h-2 bg-red-gradient" />
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <item.icon className="w-5 h-5 text-accent" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-accent">
+                      {item.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
-                <h3 className="text-xl font-serif font-bold text-foreground mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+          <div className="achievement-marquee__track" aria-hidden="true">
+            {achievements.map((item) => (
+              <div
+                key={`${item.title}-clone`}
+                className="achievement-card flex-shrink-0 w-[260px] md:w-[320px] min-h-[220px] relative bg-card rounded-2xl overflow-hidden border border-border group hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500"
+              >
+                <div className="h-2 bg-red-gradient" />
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <item.icon className="w-5 h-5 text-accent" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-accent">
+                      {item.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

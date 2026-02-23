@@ -37,7 +37,13 @@ const NewsSection = () => {
               News &{" "}
               <span className="relative inline-flex">
                 Announcements
-                <span className="absolute -bottom-2 left-0 right-0 h-2 rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent" />
+                <motion.span
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent"
+                />
               </span>
             </h2>
           </div>

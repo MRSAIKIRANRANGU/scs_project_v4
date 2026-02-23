@@ -43,7 +43,7 @@ const cardVariants: Variants = {
       return {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.6, ease: "easeOut", delay: index * 0.12 },
+        transition: { duration: 0.6, ease: "easeOut" },
       };
     }
     if (index === 1) {
@@ -57,7 +57,7 @@ const cardVariants: Variants = {
     return {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut", delay: index * 0.12 },
+      transition: { duration: 0.6, ease: "easeOut" },
     };
   },
 };
@@ -82,7 +82,13 @@ const AboutSection = () => {
             Excellence in{" "}
             <span className="relative inline-flex">
               Education
-              <span className="absolute -bottom-2 left-0 right-0 h-2 rounded-full bg-gradient-to-r from-accent/70 via-accent/30 to-transparent" />
+              <motion.span
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/30 to-transparent"
+              />
             </span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
