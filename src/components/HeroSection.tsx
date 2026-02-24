@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 
 const slides = [
   {
-    image: "https://unsplash.com/photos/TcKmus54ij0/download?force=true",
+    image:
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-9.jpg",
     tag: "Personalized Learning Pathways",
     title: "Unlocking",
     highlight: "Student Potential",
@@ -13,7 +14,8 @@ const slides = [
     cta: "Apply for Admission",
   },
   {
-    image: "https://unsplash.com/photos/nFx5TuNxz64/download?force=true",
+    image:
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-8.jpg",
     tag: "Future-Ready Curriculum",
     title: "Building",
     highlight: "Bright Futures",
@@ -21,7 +23,8 @@ const slides = [
     cta: "Explore Programs",
   },
   {
-    image: "https://unsplash.com/photos/2eMemvByB-8/download?force=true",
+    image:
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-1.jpg",
     tag: "Community First",
     title: "A school",
     highlight: "that feels like home",

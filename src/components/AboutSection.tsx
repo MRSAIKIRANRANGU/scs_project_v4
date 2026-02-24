@@ -7,7 +7,7 @@ const tabs = [
     title: "Who We Are",
     text: "At Sri Chaitanya, we have created a unique blend of world-class curricula, contemporary teaching methodologies, and equal focus on intellectual, physical and personality development, resulting future leaders who are ready to take on the world.",
     image:
-      "https://images.pexels.com/photos/18012462/pexels-photo-18012462.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1558672053-13377.jpg",
     tone: "from-white/10 via-white/0 to-white/0",
   },
   {
@@ -15,7 +15,7 @@ const tabs = [
     title: "Our Mission",
     text: "Our goal is to focus on the holistic development of each child, and to give them a competitive edge with the help of an extensive curriculum and dynamic teaching methodologies.",
     image:
-      "https://images.pexels.com/photos/31864392/pexels-photo-31864392.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1558671948-13374.jpg",
     tone: "from-white/10 via-white/0 to-white/0",
   },
   {
@@ -23,7 +23,7 @@ const tabs = [
     title: "Management",
     text: "Our management's futuristic vision, determination and leadership has enabled them to set new benchmarks, ultimately resulting in a world-class education system with a community of global learners.",
     image:
-      "https://images.pexels.com/photos/1720186/pexels-photo-1720186.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1558671948-13375.jpg",
     tone: "from-white/10 via-white/0 to-white/0",
   },
 ];

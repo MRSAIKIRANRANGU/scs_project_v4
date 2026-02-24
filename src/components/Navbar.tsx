@@ -23,7 +23,9 @@ const Logo = ({
   compact?: boolean;
   hideText?: boolean;
   isScrolled?: boolean;
-}) => (
+}) => {
+  const shouldHideText = hideText || compact;
+  return (
   <a
     href="#"
     className={`group relative flex flex-col items-center justify-center transition-transform duration-300 ${
@@ -32,18 +34,20 @@ const Logo = ({
   >
     <div
       className={`rounded-full bg-white shadow-[0_18px_30px_rgba(13,59,102,0.2)] flex items-center justify-center transition-transform duration-300  ${
-        compact ? "w-20 h-20" : "w-14 h-14"
-      } ${isScrolled ? "scale-[1.2]" : "scale-100"}`}
+        compact ? "w-[58px] h-[58px]" : "w-14 h-14"
+      } ${isScrolled ? (compact ? "scale-105" : "scale-[1.2]") : "scale-100"}`}
     >
       <img
         src={logo}
         alt="Sri Chaitanya logo"
-        className={`${compact ? "w-12 h-12" : "w-18 h-18"} object-contain`}
+        className={`${compact ? "w-[58px] h-[58px]" : "w-18 h-18"} object-contain`}
       />
     </div>
     <div
       className={`flex flex-col items-center transition-all duration-300 ${
-        hideText ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"
+        shouldHideText
+          ? "opacity-0 translate-y-2 pointer-events-none"
+          : "opacity-100 translate-y-0"
       }`}
     >
       <span
@@ -62,7 +66,8 @@ const Logo = ({
       </span>
     </div>
   </a>
-);
+  );
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -107,14 +112,14 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="flex lg:hidden items-center py-3">
+        <div className="relative flex lg:hidden h-full items-center">
           <button className="w-10 h-10 flex items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <div className="flex-1 flex justify-center">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-0">
             <Logo compact hideText={isScrolled} isScrolled={isScrolled} />
           </div>
-          <div className="w-10 h-10" />
+          <div className="ml-auto w-10 h-10" />
         </div>
       </div>
 

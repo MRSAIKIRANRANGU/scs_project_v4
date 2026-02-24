@@ -11,7 +11,7 @@ const stats = [
 ];
 
 const statsBackgroundImage =
-  "https://images.pexels.com/photos/18012462/pexels-photo-18012462.jpeg?auto=compress&cs=tinysrgb&w=2000";
+  "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1558672053-13377.jpg";
 
 const parseStatValue = (value: string) => {
   const match = value.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
@@ -82,13 +82,23 @@ const StatsSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="py-24 bg-hero relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden bg-[#0b2f52]">
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${statsBackgroundImage})` }}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,26,46,0.35),rgba(8,26,46,0.55))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,26,46,0.6),rgba(8,26,46,0.85))]" />
+        <div className="absolute inset-0 opacity-25">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+        </div>
       </div>
       <div className="absolute inset-0 opacity-15">
         <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-accent blur-3xl" />

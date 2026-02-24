@@ -57,6 +57,20 @@ const ProgramsSection = () => {
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.12),transparent_70%)] blur-3xl" />
         <div className="absolute right-0 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(226,61,104,0.12),transparent_70%)] blur-3xl" />
       </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] opacity-85"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.22) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.22) 2px, transparent 2px)",
+          backgroundSize: "70px 70px",
+          backgroundPosition: "center bottom",
+          transform: "perspective(700px) rotateX(65deg)",
+          transformOrigin: "bottom",
+          maskImage: "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+          WebkitMaskImage:
+            "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+        }}
+      />
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid gap-12 lg:grid-cols-2 items-start">
           <div className="relative pl-8 space-y-6">
