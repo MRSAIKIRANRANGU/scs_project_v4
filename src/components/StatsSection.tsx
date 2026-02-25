@@ -137,7 +137,7 @@ const StatsSection = () => {
           <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-accent shadow-[0_10px_30px_rgba(13,59,102,0.2)]">
             At a Glance
           </span>
-          <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-primary-foreground">
+          <h2 className="mt-6 text-4xl md:text-6xl font-sans font-semibold text-primary-foreground">
             <span className="sr-only">{headingText}</span>
             <motion.span
               aria-hidden="true"
@@ -145,15 +145,16 @@ const StatsSection = () => {
               variants={headingContainer}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
+              viewport={{ once: false, amount: 0.7 }}
             >
               {renderHeadingChars("Our ")}
               <span className="relative inline-flex">
-                {renderHeadingChars("Impact in Numbers")}
+                <span className="font-tomboy">{renderHeadingChars("Impact")}</span>
+                {renderHeadingChars(" in Numbers")}
                 <motion.span
                   initial={{ scaleX: 0, opacity: 0 }}
                   whileInView={{ scaleX: 1, opacity: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: underlineDelay }}
                   className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/80 via-accent/40 to-transparent"
                 />

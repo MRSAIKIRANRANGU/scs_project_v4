@@ -2,10 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroSlide1 from "@/assets/hero-slider/1.jpg";
-import heroSlide2 from "@/assets/hero-slider/2.jpg";
-import heroSlide3 from "@/assets/hero-slider/3.jpg";
-import heroSlide4 from "@/assets/hero-slider/4.jpg";
+import heroSlide1 from "@/assets/hero-slider/1.jpeg";
+import heroSlide2 from "@/assets/hero-slider/2.jpeg";
+import heroSlide3 from "@/assets/hero-slider/3.jpeg";
 
 const slides = [
   {
@@ -99,14 +98,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6 }}
               className="max-w-3xl text-center"
             >
-              <span className="mx-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/90 backdrop-blur">
-                <Sparkles className="h-4 w-4 text-[hsl(var(--accent))]" />
-                {slide.tag}
-              </span>
-
-              <h1 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight text-white">
+              <h1 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-white">
                 <motion.span
-                  className="block"
+                  className="block font-sans tracking-[-0.01em]"
                   variants={textContainer}
                   initial="hidden"
                   animate="show"
@@ -123,7 +117,7 @@ const HeroSection = () => {
                   ))}
                 </motion.span>
                 <motion.span
-                  className="block text-[hsl(var(--accent))]"
+                  className="block font-tomboy font-bold tracking-[-0.01em] text-[hsl(var(--accent))]"
                   variants={textContainer}
                   initial="hidden"
                   animate="show"

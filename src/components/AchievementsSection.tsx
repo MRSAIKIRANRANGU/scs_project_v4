@@ -116,8 +116,8 @@ const AchievementsSection = () => {
     const rect = event.currentTarget.getBoundingClientRect();
     const relX = (event.clientX - rect.left) / rect.width - 0.5;
     const relY = (event.clientY - rect.top) / rect.height - 0.5;
-    shapesX.set(relX * 16);
-    shapesY.set(relY * 12);
+    shapesX.set(relX * 30);
+    shapesY.set(relY * 24);
   };
 
   const handleSectionLeave = () => {
@@ -145,7 +145,7 @@ const AchievementsSection = () => {
       >
         <svg
           aria-hidden="true"
-          className="absolute left-6 top-16 h-16 w-16 text-primary/25 float-medium"
+          className="absolute left-6 top-16 h-20 w-20 text-[hsl(var(--primary)/0.16)] blur-[1px] float-medium rotate-[14deg]"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -159,34 +159,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute right-28 top-44 h-14 w-14 text-primary/20 float-fast"
-          viewBox="0 0 100 100"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="18" y="30" width="64" height="40" rx="8" />
-          <circle cx="40" cy="50" r="10" />
-          <path d="M55 32l22 14M55 36l20 12" />
-        </svg>
-        <svg
-          aria-hidden="true"
-          className="absolute left-1/3 top-24 h-16 w-16 text-accent/25 float-medium hidden sm:block"
-          viewBox="0 0 100 100"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M15 15h70L15 85z" />
-          <path d="M38 38h24L38 62z" />
-        </svg>
-        <svg
-          aria-hidden="true"
-          className="absolute left-1/4 top-44 h-14 w-14 text-primary/20 float-fast"
+          className="absolute left-1/4 top-44 h-12 w-12 text-[hsl(var(--primary)/0.12)] blur-[1px] float-fast rotate-[-22deg]"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -200,7 +173,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute right-1/3 top-60 h-20 w-20 text-primary/15 float-slow hidden sm:block"
+          className="absolute right-1/3 top-60 h-24 w-24 text-[hsl(var(--primary)/0.1)] blur-sm float-slow hidden sm:block rotate-[36deg]"
           viewBox="0 0 120 120"
           fill="none"
           stroke="currentColor"
@@ -214,20 +187,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute left-16 bottom-24 h-16 w-28 text-primary/20 float-medium hidden sm:block"
-          viewBox="0 0 160 90"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="10" y="20" width="140" height="40" rx="8" />
-          <path d="M30 20v-10M45 20v-8M60 20v-10M75 20v-8M90 20v-10M105 20v-8M120 20v-10" />
-        </svg>
-        <svg
-          aria-hidden="true"
-          className="absolute right-14 bottom-20 h-20 w-20 text-accent/20 float-fast hidden sm:block"
+          className="absolute right-12 top-20 h-12 w-12 text-[hsl(var(--primary)/0.12)] blur-[1px] float-fast hidden md:block rotate-[22deg]"
           viewBox="0 0 120 120"
           fill="none"
           stroke="currentColor"
@@ -235,12 +195,40 @@ const AchievementsSection = () => {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="38" cy="42" r="12" />
-          <circle cx="78" cy="42" r="12" />
-          <path d="M44 50l32 40M72 50L40 90" />
-          <path d="M60 46l-6 8M60 46l6 8" />
+          <rect x="20" y="28" width="80" height="56" rx="10" />
+          <path d="M34 44h40M34 58h28" />
+          <circle cx="78" cy="66" r="6" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute left-10 top-1/2 h-14 w-14 -translate-y-20 text-[hsl(var(--accent)/0.1)] blur-sm float-slow hidden md:block rotate-[-26deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="60" cy="60" r="24" />
+          <path d="M60 36v48M36 60h48" />
+          <path d="M42 44c10 6 26 6 36 0" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute right-1/4 bottom-10 h-12 w-12 text-[hsl(var(--primary)/0.1)] blur-[1px] float-medium hidden lg:block rotate-[34deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M24 70l36-36 12 12-36 36H24z" />
+          <path d="M60 34l8-8 12 12-8 8" />
+          <path d="M20 74l4-12" />
         </svg>
       </motion.div>
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_right,rgba(255,255,255,0.8),rgba(255,255,255,0.35),transparent_70%)]" />
       <div className="pointer-events-none absolute -top-24 right-10 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.16),transparent_70%)] blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 left-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.12),transparent_70%)] blur-3xl" />
       <div className="container relative z-10 mx-auto px-6">
@@ -253,7 +241,7 @@ const AchievementsSection = () => {
           <span className="inline-flex items-center rounded-full border border-primary/20 bg-white/80 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-primary shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
             Proud Moments
           </span>
-          <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-foreground">
+          <h2 className="mt-6 text-4xl md:text-6xl font-sans font-semibold text-foreground">
             <span className="sr-only">Our Achievements</span>
             <motion.span
               aria-hidden="true"
@@ -261,15 +249,15 @@ const AchievementsSection = () => {
               variants={headingContainer}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
+              viewport={{ once: false, amount: 0.7 }}
             >
               {renderHeadingChars("Our ")}
-              <span className="relative inline-flex">
+              <span className="relative inline-flex font-tomboy">
                 {renderHeadingChars("Achievements")}
                 <motion.span
                   initial={{ scaleX: 0, opacity: 0 }}
                   whileInView={{ scaleX: 1, opacity: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
                   className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-primary/80 via-accent/40 to-transparent"
                 />
