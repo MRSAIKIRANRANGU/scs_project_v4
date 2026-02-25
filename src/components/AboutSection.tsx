@@ -162,7 +162,7 @@ const AboutSection = () => {
                 <img
                   src={tab.image}
                   alt=""
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover object-top"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-br ${tab.tone}`} />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.03),rgba(15,23,42,0.12))]" />

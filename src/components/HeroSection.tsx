@@ -2,11 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroSlide1 from "@/assets/hero-slider/1.jpg";
+import heroSlide2 from "@/assets/hero-slider/2.jpg";
+import heroSlide3 from "@/assets/hero-slider/3.jpg";
+import heroSlide4 from "@/assets/hero-slider/4.jpg";
 
 const slides = [
   {
-    image:
-      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-9.jpg",
+    image: heroSlide1,
     tag: "Personalized Learning Pathways",
     title: "Unlocking",
     highlight: "Student Potential",
@@ -14,8 +17,7 @@ const slides = [
     cta: "Apply for Admission",
   },
   {
-    image:
-      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-8.jpg",
+    image: heroSlide2,
     tag: "Future-Ready Curriculum",
     title: "Building",
     highlight: "Bright Futures",
@@ -23,8 +25,7 @@ const slides = [
     cta: "Explore Programs",
   },
   {
-    image:
-      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/banner-home-corporate-1.jpg",
+    image: heroSlide3,
     tag: "Community First",
     title: "A school",
     highlight: "that feels like home",
@@ -77,12 +78,12 @@ const HeroSection = () => {
               key={`image-${current}`}
               src={slide.image}
               alt="Sri Chaitanya School"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-top"
               initial={{ scale: 1.02 }}
               animate={{ scale: 1.07 }}
               transition={{ duration: 6.5, ease: "linear" }}
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(255,255,255,0.4)_0%,_transparent_55%,_rgba(0,0,0,0.18)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,32,0.55)_0%,rgba(8,18,32,0.15)_45%,rgba(8,18,32,0.35)_100%)]" />
           </motion.div>
         </AnimatePresence>
       </div>
