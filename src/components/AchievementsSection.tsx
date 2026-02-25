@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { AnimatePresence, motion, type Variants, useMotionValue, useSpring } from "framer-motion";
 import { Trophy, Award, Medal } from "lucide-react";
 import logo from "@/assets/logo_transparent_fixed.png";
 
@@ -44,14 +44,6 @@ const achievements = [
     image:
       "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1615006588-21041.jpg",
   },
-  {
-    icon: Medal,
-    category: "Arts",
-    title: "Creative Excellence Awards",
-    description: "Honors in design, music, and performance at inter-school events.",
-    image:
-      "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1753419158-23685.jpeg",
-  },
 ];
 
 const AchievementsSection = () => {
@@ -59,6 +51,19 @@ const AchievementsSection = () => {
   const [isPaused, setIsPaused] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const total = achievements.length;
+  const headingContainer: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.025,
+        delayChildren: 0.05,
+      },
+    },
+  };
+  const headingChar: Variants = {
+    hidden: { opacity: 0, y: -18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
   const parallaxX = useMotionValue(0);
   const parallaxY = useMotionValue(0);
   const parallaxXSmooth = useSpring(parallaxX, { stiffness: 120, damping: 20 });
@@ -120,10 +125,17 @@ const AchievementsSection = () => {
     shapesY.set(0);
   };
 
+  const renderHeadingChars = (text: string) =>
+    text.split("").map((char, index) => (
+      <motion.span key={`${text}-${index}`} variants={headingChar} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
+
   return (
     <section
       id="achievements"
-      className="relative overflow-hidden py-24 bg-[linear-gradient(180deg,#f7f8fd_0%,#ffffff_45%,#f8f9fb_100%)]"
+      className="relative overflow-hidden py-24 bg-[linear-gradient(180deg,#f8f7f3_0%,#ffffff_55%,#f6f7fb_100%)]"
       onMouseMove={handleSectionMove}
       onMouseLeave={handleSectionLeave}
     >
@@ -133,7 +145,7 @@ const AchievementsSection = () => {
       >
         <svg
           aria-hidden="true"
-          className="absolute left-6 top-16 h-16 w-16 text-primary/30 float-medium"
+          className="absolute left-6 top-16 h-16 w-16 text-primary/25 float-medium"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -147,7 +159,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute right-28 top-44 h-14 w-14 text-primary/25 float-fast"
+          className="absolute right-28 top-44 h-14 w-14 text-primary/20 float-fast"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -161,7 +173,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute left-1/3 top-24 h-16 w-16 text-accent/30 float-medium hidden sm:block"
+          className="absolute left-1/3 top-24 h-16 w-16 text-accent/25 float-medium hidden sm:block"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -174,7 +186,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute left-1/4 top-44 h-14 w-14 text-primary/25 float-fast"
+          className="absolute left-1/4 top-44 h-14 w-14 text-primary/20 float-fast"
           viewBox="0 0 100 100"
           fill="none"
           stroke="currentColor"
@@ -188,7 +200,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute right-1/3 top-60 h-20 w-20 text-primary/20 float-slow hidden sm:block"
+          className="absolute right-1/3 top-60 h-20 w-20 text-primary/15 float-slow hidden sm:block"
           viewBox="0 0 120 120"
           fill="none"
           stroke="currentColor"
@@ -202,7 +214,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute left-16 bottom-24 h-16 w-28 text-primary/25 float-medium hidden sm:block"
+          className="absolute left-16 bottom-24 h-16 w-28 text-primary/20 float-medium hidden sm:block"
           viewBox="0 0 160 90"
           fill="none"
           stroke="currentColor"
@@ -215,7 +227,7 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
-          className="absolute right-14 bottom-20 h-20 w-20 text-accent/25 float-fast hidden sm:block"
+          className="absolute right-14 bottom-20 h-20 w-20 text-accent/20 float-fast hidden sm:block"
           viewBox="0 0 120 120"
           fill="none"
           stroke="currentColor"
@@ -233,96 +245,140 @@ const AchievementsSection = () => {
       <div className="pointer-events-none absolute -bottom-32 left-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.12),transparent_70%)] blur-3xl" />
       <div className="container relative z-10 mx-auto px-6">
         <motion.div
-          className="text-center mb-16"
+          className="text-left mb-12 max-w-3xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-primary shadow-[0_10px_30px_rgba(226,61,104,0.15)]">
+          <span className="inline-flex items-center rounded-full border border-primary/20 bg-white/80 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-primary shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
             Proud Moments
           </span>
           <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-foreground">
-            Our{" "}
-            <span className="relative inline-flex">
-              Achievements
-              <motion.span
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileInView={{ scaleX: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-primary/70 via-accent/40 to-transparent"
-              />
-            </span>
+            <span className="sr-only">Our Achievements</span>
+            <motion.span
+              aria-hidden="true"
+              className="inline-flex flex-wrap"
+              variants={headingContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.7 }}
+            >
+              {renderHeadingChars("Our ")}
+              <span className="relative inline-flex">
+                {renderHeadingChars("Achievements")}
+                <motion.span
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
+                  className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-primary/80 via-accent/40 to-transparent"
+                />
+              </span>
+            </motion.span>
           </h2>
-          <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-2xl">
             Celebrating student success through academics, leadership, and innovation.
           </p>
         </motion.div>
 
-        <div className="relative mx-auto max-w-5xl">
-          <div
-            ref={sliderRef}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-            className="relative h-[340px] md:h-[440px] overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,hsl(var(--primary)/0.92),hsl(var(--primary)/0.7),hsl(var(--accent)/0.35))] shadow-[0_24px_70px_rgba(8,15,24,0.35)] overscroll-contain"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.title}
-                className="absolute inset-0"
-                initial={{ opacity: 0, scale: 1.02 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <motion.img
-                  src={current.image}
-                  alt=""
-                  className="h-full w-full object-cover opacity-70"
-                  style={{ x: parallaxXSmooth, y: parallaxYSmooth, scale: 1.06 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--primary)/0.4)] via-[hsl(var(--primary)/0.12)] to-[hsl(var(--accent)/0.02)]" />
-              </motion.div>
-            </AnimatePresence>
-            <img
-              src={logo}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-1/2 w-[200px] -translate-x-1/2 -translate-y-1/2 opacity-[0.08] sm:w-[260px] z-[1]"
-            />
-            <div className="relative z-10 h-full flex items-end px-5 pb-5 md:px-10 md:pb-8">
-              <div className="w-full rounded-2xl border border-white/80 bg-white/95 px-5 py-4 md:px-8 md:py-5 shadow-[0_20px_55px_rgba(8,15,24,0.25)]">
-                <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground/70">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-primary">
-                    <current.icon className="h-3.5 w-3.5" />
-                    {current.category}
-                  </span>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] items-stretch">
+          <div className="relative">
+            <div
+              ref={sliderRef}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={handleMouseLeave}
+              onMouseMove={handleMouseMove}
+              className="relative h-full min-h-[380px] md:min-h-[520px] overflow-hidden rounded-[36px] bg-[#0b1b2f] shadow-[0_28px_70px_rgba(8,15,24,0.35)] overscroll-contain"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.title}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
+                >
+                  <motion.img
+                    src={current.image}
+                    alt=""
+                    className="h-full w-full object-cover object-top opacity-[0.95]"
+                    style={{ x: parallaxXSmooth, y: parallaxYSmooth, scale: 1.05 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="absolute left-6 top-6 z-10 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-foreground shadow-[0_10px_30px_rgba(15,23,42,0.15)]">
+                <current.icon className="h-3.5 w-3.5 text-primary" />
+                {current.category}
+              </div>
+
+              <img
+                src={logo}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute right-6 bottom-6 w-[120px] opacity-[0.12] sm:w-[150px] z-[1]"
+              />
+
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-8">
+                <div className="max-w-[520px] rounded-2xl bg-white/60 px-5 py-4 md:px-7 md:py-5 shadow-[0_22px_55px_rgba(8,15,24,0.25)]">
+                  <h3 className="mt-3 text-lg md:text-2xl font-serif font-semibold text-foreground">
+                    {current.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground text-white/90 leading-relaxed">
+                    {current.description}
+                  </p>
                 </div>
-                <h3 className="mt-3 text-lg md:text-2xl font-serif font-semibold text-foreground">
-                  {current.title}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground leading-relaxed max-w-3xl">
-                  {current.description}
-                </p>
               </div>
             </div>
-            <div className="absolute right-5 top-1/2 z-20 -translate-y-1/2 flex flex-col gap-2">
-              {achievements.map((_, index) => (
+          </div>
+
+          <aside className="h-full rounded-[28px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+            {/* <p className="text-xs uppercase tracking-[0.4em] text-foreground/60">
+              In This Issue
+            </p> */}
+            <h3 className="mt-3 text-2xl font-serif font-semibold text-foreground">
+              Featured Achievements
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Pick a story to preview the highlight reel.
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {achievements.map((item, index) => (
                 <button
-                  key={`dot-${index}`}
+                  key={`story-${item.title}`}
                   type="button"
-                  aria-label={`Go to slide ${index + 1}`}
                   onClick={() => setActiveIndex(index)}
-                  className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                  aria-pressed={index === activeIndex}
+                  className={`w-full text-left flex items-start gap-3 rounded-2xl border px-4 py-3 transition ${
                     index === activeIndex
-                      ? "bg-accent shadow-[0_0_0_4px_rgba(226,61,104,0.2)]"
-                      : "bg-white/30 hover:bg-white/60"
+                      ? "border-primary/35 bg-primary/5 shadow-[0_10px_26px_rgba(13,59,102,0.12)]"
+                      : "border-transparent hover:border-primary/15 hover:bg-primary/5"
                   }`}
-                />
+                >
+                  <span
+                    className={`text-xs font-semibold tracking-[0.3em] ${
+                      index === activeIndex ? "text-primary" : "text-foreground/50"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p
+                      className={`text-sm font-semibold ${
+                        index === activeIndex ? "text-foreground" : "text-foreground/80"
+                      }`}
+                    >
+                      {item.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{item.category}</p>
+                  </div>
+                </button>
               ))}
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>

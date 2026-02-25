@@ -80,6 +80,28 @@ const StatCard = ({ value, label, delay, isInView }: StatCardProps) => {
 const StatsSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+  const headingText = "Our Impact in Numbers";
+  const headingContainer = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.025,
+        delayChildren: 0.05,
+      },
+    },
+  };
+  const headingChar = {
+    hidden: { opacity: 0, y: -18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+  const underlineDelay =
+    0.05 + Math.max(headingText.length - 1, 0) * 0.025 + 0.35;
+  const renderHeadingChars = (text: string) =>
+    text.split("").map((char, index) => (
+      <motion.span key={`${text}-${index}`} variants={headingChar} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
 
   return (
     <section ref={sectionRef} className="py-24 relative overflow-hidden bg-[#0b2f52]">
@@ -116,17 +138,27 @@ const StatsSection = () => {
             At a Glance
           </span>
           <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-primary-foreground">
-            Our{" "}
-            <span className="relative inline-flex">
-              Impact in Numbers
-              <motion.span
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileInView={{ scaleX: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/80 via-accent/40 to-transparent"
-              />
-            </span>
+            <span className="sr-only">{headingText}</span>
+            <motion.span
+              aria-hidden="true"
+              className="inline-flex flex-wrap"
+              variants={headingContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.7 }}
+            >
+              {renderHeadingChars("Our ")}
+              <span className="relative inline-flex">
+                {renderHeadingChars("Impact in Numbers")}
+                <motion.span
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: underlineDelay }}
+                  className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/80 via-accent/40 to-transparent"
+                />
+              </span>
+            </motion.span>
           </h2>
           <p className="mt-4 text-sm md:text-base text-primary-foreground/70 max-w-2xl mx-auto">
             A snapshot of the scale, reach, and community that make our learning

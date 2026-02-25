@@ -63,6 +63,29 @@ const cardVariants: Variants = {
 };
 
 const AboutSection = () => {
+  const headingText = "Excellence in Education";
+  const headingContainer: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.025,
+        delayChildren: 0.05,
+      },
+    },
+  };
+  const headingChar: Variants = {
+    hidden: { opacity: 0, y: -18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+  const underlineDelay =
+    0.05 + Math.max(headingText.length - 1, 0) * 0.025 + 0.35;
+  const renderHeadingChars = (text: string) =>
+    text.split("").map((char, index) => (
+      <motion.span key={`${text}-${index}`} variants={headingChar} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
+
   return (
     <section id="about" className="relative overflow-hidden py-24 bg-background">
       <div className="pointer-events-none absolute -top-24 left-1/2 h-56 w-[540px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.18),transparent_70%)] blur-3xl" />
@@ -79,17 +102,27 @@ const AboutSection = () => {
             Discover
           </span>
           <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-foreground">
-            Excellence in{" "}
-            <span className="relative inline-flex">
-              Education
-              <motion.span
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileInView={{ scaleX: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/30 to-transparent"
-              />
-            </span>
+            <span className="sr-only">{headingText}</span>
+            <motion.span
+              aria-hidden="true"
+              className="inline-flex flex-wrap"
+              variants={headingContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.7 }}
+            >
+              {renderHeadingChars("Excellence in ")}
+              <span className="relative inline-flex">
+                {renderHeadingChars("Education")}
+                <motion.span
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: underlineDelay }}
+                  className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/30 to-transparent"
+                />
+              </span>
+            </motion.span>
           </h2>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             A learning experience shaped by academic rigor, personal mentorship, and

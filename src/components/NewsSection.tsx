@@ -32,6 +32,29 @@ const news = [
 ];
 
 const NewsSection = () => {
+  const headingText = "News & Announcements";
+  const headingContainer = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.025,
+        delayChildren: 0.05,
+      },
+    },
+  };
+  const headingChar = {
+    hidden: { opacity: 0, y: -18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+  const underlineDelay =
+    0.05 + Math.max(headingText.length - 1, 0) * 0.025 + 0.35;
+  const renderHeadingChars = (text: string) =>
+    text.split("").map((char, index) => (
+      <motion.span key={`${text}-${index}`} variants={headingChar} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
+
   return (
     <section id="news" className="relative overflow-hidden py-24 bg-background">
       <div className="pointer-events-none absolute inset-0 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_16%,black_84%,transparent)]">
@@ -53,17 +76,27 @@ const NewsSection = () => {
               Stay Updated
             </span>
             <h2 className="mt-6 text-4xl md:text-6xl font-serif font-semibold text-foreground">
-              News &{" "}
-              <span className="relative inline-flex">
-                Announcements
-                <motion.span
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  whileInView={{ scaleX: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                  className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent"
-                />
-              </span>
+              <span className="sr-only">{headingText}</span>
+              <motion.span
+                aria-hidden="true"
+                className="inline-flex flex-wrap"
+                variants={headingContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.7 }}
+              >
+                {renderHeadingChars("News & ")}
+                <span className="relative inline-flex">
+                  {renderHeadingChars("Announcements")}
+                  <motion.span
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: underlineDelay }}
+                    className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/40 to-transparent"
+                  />
+                </span>
+              </motion.span>
             </h2>
           </div>
           <a
