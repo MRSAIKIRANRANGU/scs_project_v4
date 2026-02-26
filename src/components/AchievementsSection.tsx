@@ -159,6 +159,34 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
+          className="absolute left-1/2 top-20 h-12 w-12 -translate-x-[260px] text-[hsl(var(--accent)/0.12)] blur-[1px] float-fast hidden md:block rotate-[-12deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="24" y="28" width="72" height="56" rx="10" />
+          <path d="M36 44h38M36 58h28" />
+          <circle cx="78" cy="66" r="6" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute right-1/4 top-24 h-14 w-14 text-[hsl(var(--primary)/0.1)] blur-sm float-slow hidden md:block rotate-[28deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="60" cy="60" r="24" />
+          <path d="M60 36v48M36 60h48" />
+          <path d="M44 46c10 6 22 6 32 0" />
+        </svg>
+        <svg
+          aria-hidden="true"
           className="absolute left-1/4 top-44 h-12 w-12 text-[hsl(var(--primary)/0.12)] blur-[1px] float-fast rotate-[-22deg]"
           viewBox="0 0 100 100"
           fill="none"
@@ -173,6 +201,48 @@ const AchievementsSection = () => {
         </svg>
         <svg
           aria-hidden="true"
+          className="absolute left-1/3 top-1/2 h-16 w-16 -translate-y-24 text-[hsl(var(--primary)/0.1)] blur-sm float-medium hidden md:block rotate-[18deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M30 76l30-30 20 20-30 30H30z" />
+          <path d="M60 36l8-8 12 12-8 8" />
+          <path d="M26 80l4-12" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute right-16 top-1/3 h-12 w-12 text-[hsl(var(--primary)/0.1)] blur-[1px] float-fast hidden md:block rotate-[-14deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="24" y="30" width="72" height="50" rx="10" />
+          <path d="M38 48h44M38 62h30" />
+          <circle cx="80" cy="66" r="6" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute left-10 bottom-28 h-14 w-14 text-[hsl(var(--accent)/0.1)] blur-sm float-slow hidden md:block rotate-[22deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="60" cy="60" r="24" />
+          <path d="M60 36v48M36 60h48" />
+          <path d="M44 46c10 6 22 6 32 0" />
+        </svg>
+        <svg
+          aria-hidden="true"
           className="absolute right-1/3 top-60 h-24 w-24 text-[hsl(var(--primary)/0.1)] blur-sm float-slow hidden sm:block rotate-[36deg]"
           viewBox="0 0 120 120"
           fill="none"
@@ -184,6 +254,20 @@ const AchievementsSection = () => {
           <path d="M20 80l50-50 20 20-50 50z" />
           <path d="M70 30l12-12 20 20-12 12" />
           <path d="M45 95l-20 5 5-20" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="absolute right-1/4 bottom-10 h-12 w-12 text-[hsl(var(--primary)/0.1)] blur-[1px] float-medium hidden lg:block rotate-[34deg]"
+          viewBox="0 0 120 120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M24 70l36-36 12 12-36 36H24z" />
+          <path d="M60 34l8-8 12 12-8 8" />
+          <path d="M20 74l4-12" />
         </svg>
         <svg
           aria-hidden="true"
@@ -212,20 +296,6 @@ const AchievementsSection = () => {
           <circle cx="60" cy="60" r="24" />
           <path d="M60 36v48M36 60h48" />
           <path d="M42 44c10 6 26 6 36 0" />
-        </svg>
-        <svg
-          aria-hidden="true"
-          className="absolute right-1/4 bottom-10 h-12 w-12 text-[hsl(var(--primary)/0.1)] blur-[1px] float-medium hidden lg:block rotate-[34deg]"
-          viewBox="0 0 120 120"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M24 70l36-36 12 12-36 36H24z" />
-          <path d="M60 34l8-8 12 12-8 8" />
-          <path d="M20 74l4-12" />
         </svg>
       </motion.div>
       <div className="pointer-events-none absolute right-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_right,rgba(255,255,255,0.8),rgba(255,255,255,0.35),transparent_70%)]" />

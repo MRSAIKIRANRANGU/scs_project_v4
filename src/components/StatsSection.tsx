@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
+import statsBackgroundImage from "@/assets/external/tarnsport.jpg";
 
 const stats = [
   { value: "22", label: "States" },
@@ -9,9 +10,6 @@ const stats = [
   { value: "55K+", label: "Staff" },
   { value: "9.5L+", label: "Students" },
 ];
-
-const statsBackgroundImage =
-  "https://srichaitanyaapp.s3.ap-south-1.amazonaws.com/prod/assets/uploads/gallery-inter-school-1558672053-13377.jpg";
 
 const parseStatValue = (value: string) => {
   const match = value.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);

@@ -8,20 +8,20 @@ import heroSlide3 from "@/assets/hero-slider/3.jpeg";
 
 const slides = [
   {
-    image: heroSlide1,
-    tag: "Personalized Learning Pathways",
-    title: "Unlocking",
-    highlight: "Student Potential",
-    text: "Expert faculty, modern infrastructure, and a supportive culture help every learner thrive.",
-    cta: "Apply for Admission",
-  },
-  {
     image: heroSlide2,
     tag: "Future-Ready Curriculum",
     title: "Building",
     highlight: "Bright Futures",
     text: "Hands-on learning, digital skills, and strong mentorship empower students to excel.",
     cta: "Explore Programs",
+  },
+  {
+    image: heroSlide1,
+    tag: "Personalized Learning Pathways",
+    title: "Unlocking",
+    highlight: "Student Potential",
+    text: "Expert faculty, modern infrastructure, and a supportive culture help every learner thrive.",
+    cta: "Apply for Admission",
   },
   {
     image: heroSlide3,
