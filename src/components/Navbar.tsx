@@ -46,15 +46,15 @@ const Logo = ({
     <div
       className={`pointer-events-none absolute left-1/2 z-0 ${
         compact ? "top-[54px] h-24 w-36" : "top-[35px] h-24 w-[420px]"
-      } -translate-x-1/2 rounded-b-[55%] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.6)_0%,rgba(255,255,255,0.18)_45%,rgba(255,255,255,0)_75%)] blur-2xl mix-blend-screen transition-opacity duration-300 ${
-        shouldHideText ? "opacity-0" : "opacity-90"
+      } -translate-x-1/2 rounded-b-[55%] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.12)_45%,rgba(255,255,255,0)_75%)] blur-2xl mix-blend-screen transition-opacity duration-300 ${
+        shouldHideText ? "opacity-0" : "opacity-60"
       }`}
     />
     <div
       className={`pointer-events-none absolute left-1/2 z-0 ${
         compact ? "top-[58px] h-10 w-10" : "top-[68px] h-12 w-12"
-      } -translate-x-1/2 rounded-full bg-white/30 blur-lg transition-opacity duration-300 ${
-        shouldHideText ? "opacity-0" : "opacity-80"
+      } -translate-x-1/2 rounded-full bg-white/20 blur-lg transition-opacity duration-300 ${
+        shouldHideText ? "opacity-0" : "opacity-55"
       }`}
     />
     <div
