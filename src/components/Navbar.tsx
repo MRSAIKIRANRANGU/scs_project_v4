@@ -33,7 +33,7 @@ const Logo = ({
     }`}
   >
     <div
-      className={`rounded-full bg-white shadow-[0_18px_30px_rgba(13,59,102,0.2)] flex items-center justify-center transition-transform duration-300  ${
+      className={`relative z-10 rounded-full bg-white shadow-[0_18px_30px_rgba(13,59,102,0.2)] flex items-center justify-center transition-transform duration-300  ${
         compact ? "w-[58px] h-[58px]" : "w-14 h-14"
       } ${isScrolled ? (compact ? "scale-105" : "scale-[1.2]") : "scale-100"}`}
     >
@@ -44,15 +44,29 @@ const Logo = ({
       />
     </div>
     <div
-      className={`flex flex-col items-center transition-all duration-300 ${
+      className={`pointer-events-none absolute left-1/2 z-0 ${
+        compact ? "top-[54px] h-24 w-36" : "top-[35px] h-24 w-[420px]"
+      } -translate-x-1/2 rounded-b-[55%] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.6)_0%,rgba(255,255,255,0.18)_45%,rgba(255,255,255,0)_75%)] blur-2xl mix-blend-screen transition-opacity duration-300 ${
+        shouldHideText ? "opacity-0" : "opacity-90"
+      }`}
+    />
+    <div
+      className={`pointer-events-none absolute left-1/2 z-0 ${
+        compact ? "top-[58px] h-10 w-10" : "top-[68px] h-12 w-12"
+      } -translate-x-1/2 rounded-full bg-white/30 blur-lg transition-opacity duration-300 ${
+        shouldHideText ? "opacity-0" : "opacity-80"
+      }`}
+    />
+    <div
+      className={`relative z-10 flex flex-col items-center transition-all duration-300 ${
         shouldHideText
           ? "opacity-0 translate-y-2 pointer-events-none"
           : "opacity-100 translate-y-0"
       }`}
     >
       <span
-        className={`mt-2 font-['Playfair_Display'] font-bold text-[hsl(var(--primary))] ${
-          compact ? "text-base" : "text-2xl"
+        className={`mt-2 font-['Cinzel_Decorative'] font-bold text-[hsl(var(--primary))] ${
+          compact ? "text-lg" : "text-3xl"
         }`}
       >
         Sri Chaitanya

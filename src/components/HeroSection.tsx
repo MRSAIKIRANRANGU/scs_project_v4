@@ -82,7 +82,7 @@ const HeroSection = () => {
               animate={{ scale: 1.07 }}
               transition={{ duration: 6.5, ease: "linear" }}
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,32,0.55)_0%,rgba(8,18,32,0.15)_45%,rgba(8,18,32,0.35)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.35)_45%,rgba(0,0,0,0.05)_100%)]" />
           </motion.div>
         </AnimatePresence>
       </div>
