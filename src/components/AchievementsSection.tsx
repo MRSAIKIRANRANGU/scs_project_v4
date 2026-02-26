@@ -299,8 +299,6 @@ const AchievementsSection = () => {
         </svg>
       </motion.div>
       <div className="pointer-events-none absolute right-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_right,rgba(255,255,255,0.8),rgba(255,255,255,0.35),transparent_70%)]" />
-      <div className="pointer-events-none absolute -top-24 right-10 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.16),transparent_70%)] blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 left-0 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(13,59,102,0.12),transparent_70%)] blur-3xl" />
       <div className="container relative z-10 mx-auto px-6">
         <motion.div
           className="text-left mb-12 max-w-3xl"
