@@ -1,8 +1,21 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowDownToLine, ArrowRight, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const AdmissionCTA = () => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [isDownloaded, setIsDownloaded] = useState(false);
+
+  const handleDownloadClick = () => {
+    setIsDownloading(true);
+    window.setTimeout(() => {
+      setIsDownloading(false);
+      setIsDownloaded(true);
+      window.setTimeout(() => setIsDownloaded(false), 1200);
+    }, 1200);
+  };
+
   return (
     <section className="admission-cta py-24 bg-[#0c1a2d] relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden aurora-sky">
@@ -28,12 +41,35 @@ const AdmissionCTA = () => {
             Admissions Open<br />
             <span className="text-gradient-red">2026-2027</span>
           </h2>
-          <p className="text-primary-foreground/70 text-lg max-w-md mx-auto mb-10">
-            Give your child the best start. Join a legacy of 40+ years of academic excellence across 950 schools.
+          <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto mb-10">
+            Join thousands of successful students who have transformed their dreams into reality with Sri Chaitanya's
+            proven educational approach
           </p>
-          <Button size="lg" className="cta-button cursor-pointer group px-10 py-6 text-base font-semibold">
-            Enquire Now <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" className="cta-button cursor-pointer group px-10 py-6 text-base font-semibold">
+              Apply Admission <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="cursor-pointer px-10 py-6 text-base font-semibold border-white/50 bg-transparent text-white hover:bg-white/10 hover:text-white shadow-[0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_24px_rgba(255,255,255,0.35)] transition-all"
+              onClick={handleDownloadClick}
+            >
+              <span className="inline-flex items-center gap-2">
+                Download Brochure
+                <span className="relative inline-flex h-5 w-5 items-center justify-center">
+                  {isDownloading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : isDownloaded ? (
+                    <Check className="h-5 w-5 text-emerald-400" />
+                  ) : (
+                    <ArrowDownToLine className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-0.5" />
+                  )}
+                </span>
+              </span>
+            </Button>
+          </div>
+
         </motion.div>
       </div>
     </section>
