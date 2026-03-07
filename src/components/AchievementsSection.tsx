@@ -308,7 +308,7 @@ const AchievementsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="achievements-pill inline-flex items-center rounded-full border border-primary/20 bg-white/80 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-primary shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
+          <span className="inline-flex items-center rounded-full border border-primary/20 bg-white/80 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-primary shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
             Proud Moments
           </span>
           <h2 className="mt-6 text-4xl md:text-6xl font-sans font-semibold text-foreground">

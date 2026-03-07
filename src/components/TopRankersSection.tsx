@@ -1,4 +1,5 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Award, Sparkles } from "lucide-react";
 
 const rankers = [
@@ -38,6 +39,8 @@ const rankers = [
 ];
 
 const TopRankersSection = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
   const headingText = "Celebrating our highest achievers";
   const headingContainer: Variants = {
     hidden: {},
@@ -62,10 +65,38 @@ const TopRankersSection = () => {
     ));
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[radial-gradient(circle_at_top,#f3f6ff_0%,#ffffff_55%,#f7f8fb_100%)]">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden py-24 bg-[radial-gradient(circle_at_top,#f3f6ff_0%,#ffffff_55%,#f7f8fb_100%)]"
+    >
       <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
       <div className="absolute -bottom-24 right-10 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
       <div className="top-rankers-outline" aria-hidden="true" />
+      <div className={`rankers-celebration ${isInView ? "is-active" : ""}`} aria-hidden="true">
+        {[
+          { x: "22%", y: "12%", d: "0ms", s: "0.9" },
+          { x: "32%", y: "6%", d: "120ms", s: "0.7" },
+          { x: "44%", y: "10%", d: "220ms", s: "1" },
+          { x: "56%", y: "7%", d: "320ms", s: "0.8" },
+          { x: "68%", y: "12%", d: "160ms", s: "0.75" },
+          { x: "78%", y: "8%", d: "260ms", s: "0.85" },
+          { x: "40%", y: "16%", d: "420ms", s: "0.7" },
+          { x: "60%", y: "16%", d: "520ms", s: "0.75" },
+        ].map((item, index) => (
+          <span
+            key={`spark-${index}`}
+            className="rankers-celebration__spark"
+            style={
+              {
+                "--x": item.x,
+                "--y": item.y,
+                "--d": item.d,
+                "--s": item.s,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
       <div
         className="absolute inset-0 opacity-40"
         style={{
@@ -86,7 +117,7 @@ const TopRankersSection = () => {
             <Sparkles className="h-3.5 w-3.5" />
             Top Rankers
           </span>
-          <h2 className="mt-6 text-4xl md:text-6xl font-serif font-bold text-foreground">
+          <h2 className="mt-6 text-4xl md:text-6xl font-sans font-semibold text-foreground">
             <span className="sr-only">{headingText}</span>
             <motion.span
               aria-hidden="true"
