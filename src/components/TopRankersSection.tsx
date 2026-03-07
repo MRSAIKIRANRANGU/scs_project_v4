@@ -96,6 +96,29 @@ const TopRankersSection = () => {
             }
           />
         ))}
+        {[
+          { x: "26%", y: "20%", d: "80ms", s: "1", r: "-12deg", t: "✨" },
+          { x: "38%", y: "14%", d: "180ms", s: "1.1", r: "8deg", t: "🎉" },
+          { x: "52%", y: "18%", d: "260ms", s: "0.95", r: "-6deg", t: "⭐" },
+          { x: "66%", y: "14%", d: "320ms", s: "1.05", r: "10deg", t: "✨" },
+          { x: "74%", y: "20%", d: "420ms", s: "0.9", r: "-8deg", t: "🎊" },
+        ].map((item, index) => (
+          <span
+            key={`emoji-${index}`}
+            className="rankers-celebration__emoji"
+            style={
+              {
+                "--x": item.x,
+                "--y": item.y,
+                "--d": item.d,
+                "--s": item.s,
+                "--r": item.r,
+              } as React.CSSProperties
+            }
+          >
+            {item.t}
+          </span>
+        ))}
       </div>
       <div
         className="absolute inset-0 opacity-40"

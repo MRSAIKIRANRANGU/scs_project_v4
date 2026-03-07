@@ -663,12 +663,27 @@
     opacity: 0;
   }
 
+  .rankers-celebration__emoji {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    font-size: 20px;
+    transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(var(--r, 0deg));
+    opacity: 0;
+    filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.18));
+  }
+
   .rankers-celebration.is-active {
     opacity: 1;
   }
 
   .rankers-celebration.is-active .rankers-celebration__spark {
     animation: rankerSpark 1.4s ease-out forwards;
+    animation-delay: var(--d);
+  }
+
+  .rankers-celebration.is-active .rankers-celebration__emoji {
+    animation: rankerEmoji 1.8s ease-out forwards;
     animation-delay: var(--d);
   }
 
@@ -1396,14 +1411,28 @@
 @keyframes rankerSpark {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.6) translateY(12px);
+    transform: translate(-50%, -50%) scale(0.6) translateY(-18px);
   }
   35% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.2) translateY(-30px);
+    transform: translate(-50%, -50%) scale(1.2) translateY(36px);
+  }
+}
+
+@keyframes rankerEmoji {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-30px) scale(0.8) rotate(var(--r, 0deg));
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(48px) scale(1.1) rotate(var(--r, 0deg));
   }
 }
 
