@@ -79,6 +79,7 @@ const NewsSection = () => {
       onMouseMove={handleSectionMove}
       onMouseLeave={handleSectionLeave}
     >
+      <div className="top-rankers-outline" aria-hidden="true" />
       <motion.div
         className="pointer-events-none absolute inset-0 overflow-hidden"
         style={{ x: shapesXSmooth, y: shapesYSmooth }}

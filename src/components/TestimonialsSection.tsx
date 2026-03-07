@@ -4,30 +4,33 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "The daily mentoring and structured study plans brought real calm and clarity to our routine at home.",
-    name: "Ritika M.",
-    role: "Parent of Class 9 student",
-    tag: "Parent Voice",
-    rating: 4.6,
-    avatar: "https://randomuser.me/api/portraits/women/32.jpg",
+      "Daily mentoring and structured study plans helped me stay calm, consistent, and ready for exams.",
+    name: "Aarav Sharma",
+    role: "Class 10 student",
+    tag: "Student Voice",
+    rating: 4.8,
+    avatar:
+      "https://images.pexels.com/photos/11793802/pexels-photo-11793802.jpeg?cs=srgb&dl=pexels-mehmet-turgut-kirkgoz-11793802.jpg&fm=jpg",
   },
   {
     quote:
       "Focused feedback after every test helped me fix gaps quickly and feel confident heading into exams.",
-    name: "Arjun K.",
-    role: "Class 10 student",
+    name: "Ananya Iyer",
+    role: "Class 9 student",
     tag: "Student Voice",
-    rating: 4.9,
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+    rating: 4.6,
+    avatar:
+      "https://images.pexels.com/photos/30768834/pexels-photo-30768834.jpeg?cs=srgb&dl=pexels-artosuraj-30768834.jpg&fm=jpg",
   },
   {
     quote:
       "Teachers here notice the small wins. That steady encouragement made me fall in love with learning again.",
-    name: "Nisha V.",
+    name: "Rohan Mehta",
     role: "Class 8 student",
     tag: "Student Voice",
-    rating: 4.3,
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    rating: 4.4,
+    avatar:
+      "https://images.pexels.com/photos/18198859/pexels-photo-18198859.jpeg?cs=srgb&dl=pexels-iqbal-farooz-10787244-18198859.jpg&fm=jpg",
   },
 ];
 

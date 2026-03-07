@@ -1,47 +1,71 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Award, Sparkles } from "lucide-react";
 
 const rankers = [
   {
-    name: "Rajat Verma",
-    roll: "18104167",
-    score: "97.2%",
+    name: "Aarav Reddy",
+    roll: "SC-24-1107",
+    score: "98.1%",
     badge: "School Topper",
     stream: "CBSE XII Science",
     credential: "Merit Certificate",
     year: "2023-24",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/12926479/pexels-photo-12926479.jpeg?cs=srgb&dl=pexels-nandhukumar-12926479.jpg&fm=jpg",
   },
   {
-    name: "Meera Iyer",
-    roll: "19230041",
-    score: "96.4%",
+    name: "Ananya Sharma",
+    roll: "SC-24-2049",
+    score: "97.4%",
     badge: "State Rank",
     stream: "CBSE XII Biology",
     credential: "Excellence Award",
     year: "2023-24",
     image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/30768834/pexels-photo-30768834.jpeg?cs=srgb&dl=pexels-artosuraj-30768834.jpg&fm=jpg",
   },
   {
-    name: "Arjun Kumar",
-    roll: "20578112",
-    score: "95.8%",
+    name: "Vivek Iyer",
+    roll: "SC-24-3092",
+    score: "96.2%",
     badge: "District Topper",
     stream: "CBSE XII Maths",
     credential: "Merit Certificate",
     year: "2023-24",
     image:
-      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80",
+      "https://images.pexels.com/photos/17053878/pexels-photo-17053878.jpeg?cs=srgb&dl=pexels-deepshikha-sinha-580932792-17053878.jpg&fm=jpg",
   },
 ];
 
 const TopRankersSection = () => {
+  const headingText = "Celebrating our highest achievers";
+  const headingContainer: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: 0.05,
+      },
+    },
+  };
+  const headingChar: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+  const underlineDelay =
+    0.05 + Math.max(headingText.length - 1, 0) * 0.03 + 0.35;
+  const renderHeadingChars = (text: string): JSX.Element[] =>
+    text.split("").map((char, index) => (
+      <motion.span key={`${text}-${index}`} variants={headingChar} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
+
   return (
     <section className="relative overflow-hidden py-24 bg-[radial-gradient(circle_at_top,#f3f6ff_0%,#ffffff_55%,#f7f8fb_100%)]">
       <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
       <div className="absolute -bottom-24 right-10 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
+      <div className="top-rankers-outline" aria-hidden="true" />
       <div
         className="absolute inset-0 opacity-40"
         style={{
@@ -63,7 +87,29 @@ const TopRankersSection = () => {
             Top Rankers
           </span>
           <h2 className="mt-6 text-4xl md:text-6xl font-serif font-bold text-foreground">
-            Celebrating our highest achievers
+            <span className="sr-only">{headingText}</span>
+            <motion.span
+              aria-hidden="true"
+              className="inline-flex flex-wrap justify-center"
+              variants={headingContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.7 }}
+            >
+              <span className="relative inline-flex">
+                {renderHeadingChars("Celebrating our ")}
+                <span className="relative inline-flex font-tomboy">
+                  {renderHeadingChars("highest achievers")}
+                  <motion.span
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: underlineDelay }}
+                    className="absolute -bottom-2 left-0 right-0 h-2 origin-left rounded-full bg-gradient-to-r from-accent/70 via-accent/30 to-transparent"
+                  />
+                </span>
+              </span>
+            </motion.span>
           </h2>
           <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
             Spotlighting the students who set the benchmark with outstanding scores and dedication.

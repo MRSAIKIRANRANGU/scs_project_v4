@@ -81,7 +81,7 @@ const StatsSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="py-20 bg-background">
+    <section ref={sectionRef} className="relative bg-background pt-20 pb-0">
       <div className="container mx-auto px-6">
         <motion.div
           className="impact-strip"
@@ -104,6 +104,7 @@ const StatsSection = () => {
           </div>
         </motion.div>
       </div>
+      <div className="stats-outline-bottom" aria-hidden="true" />
     </section>
   );
 };
