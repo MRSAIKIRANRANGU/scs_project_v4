@@ -16,11 +16,12 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ProgramsSection />
-      <AboutSection />
       <StatsSection />
+      <AboutSection />
+      
       <AchievementsSection />
       <TopRankersSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <NewsSection />
       <AdmissionCTA />
       <Footer />
