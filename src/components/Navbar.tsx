@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/logo_transparent_fixed.png";
+import { MapPin, User } from "lucide-react";
+
 
 type NavLink = {
   label: string;
@@ -98,6 +100,7 @@ const Logo = ({
 };
 
 const Navbar = () => {
+  const [location, setLocation] = useState("Select City");
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -107,6 +110,25 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+
+  const updateLocation = () => {
+    const loc = localStorage.getItem("scs-location");
+    if (loc) {
+      setLocation(loc);
+    }
+  };
+
+  // load when navbar first loads
+  updateLocation();
+
+  // listen for hero section update
+  window.addEventListener("locationChange", updateLocation);
+
+  return () => window.removeEventListener("locationChange", updateLocation);
+
+}, []);
 
   const renderDesktopLink = (link: NavLink, align: "left" | "right" = "left") => {
     if (!link.children?.length) {
@@ -158,18 +180,36 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[hsl(var(--primary))] text-white shadow-[0_18px_35px_rgba(13,59,102,0.25)]">
+      
       <div className="h-1 w-full bg-[linear-gradient(90deg,_hsl(var(--accent)),_hsl(var(--primary)))]" />
       <div className="container mx-auto px-6 h-[80px]">
         <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center py-3">
           <div className="flex items-center gap-6 -translate-y-2">
-            {leftLinks.map((link) => renderDesktopLink(link))}
-          </div>
+
+  {/* Location */}
+  <div className="flex items-center mr-6 -translate-y-1">
+  <div className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition px-3 py-1.5 rounded-full text-sm font-medium text-white">
+  <MapPin className="w-4 h-4 text-[hsl(var(--accent))]" />
+  <span>{location}</span>
+</div>
+</div>
+
+  {leftLinks.map((link) => renderDesktopLink(link))}
+
+</div>
 
           <Logo hideText={isScrolled} isScrolled={isScrolled} />
 
           <div className="flex items-center gap-6 justify-end -translate-y-2">
-            {rightLinks.map((link) => renderDesktopLink(link, "right"))}
-          </div>
+
+  {rightLinks.map((link) => renderDesktopLink(link, "right"))}
+
+  {/* Login Button */}
+  <button className="flex items-center gap-2 border border-white/30 hover:border-white hover:bg-white/10 transition px-4 py-1.5 rounded-full text-sm font-semibold text-white -translate-y-1">
+  <User className="w-4 h-4" />
+  Login
+</button>
+</div>
         </div>
 
         <div className="relative flex lg:hidden h-full items-center">

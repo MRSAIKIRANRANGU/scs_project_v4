@@ -4,7 +4,10 @@ import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Search, Sparkles } from 
 import { Button } from "@/components/ui/button";
 import heroSlide1 from "@/assets/hero-slider/1.jpeg";
 import heroSlide2 from "@/assets/hero-slider/2.jpeg";
-import heroSlide3 from "@/assets/hero-slider/3.jpeg";
+// import heroSlide3 from "@/assets/hero-slider/3.jpeg";
+import heroSlide3 from "@/assets/hero-slider/hero.mp4";
+
+
 
 const slides = [
   {
@@ -50,6 +53,25 @@ const textItem = {
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
+ const [selectedState, setSelectedState] = useState("");
+const [selectedCity, setSelectedCity] = useState("");
+const [selectedBranch, setSelectedBranch] = useState("");
+
+const cities = {
+  Telangana: ["Hyderabad", "Warangal"],
+  "Andhra Pradesh": ["Vijayawada", "Visakhapatnam"],
+  Karnataka: ["Bengaluru"],
+  "Tamil Nadu": ["Chennai"]
+};
+
+const branches = {
+  Hyderabad: ["Jubilee Hills", "Madhapur", "Hitech City"],
+  Warangal: ["Hanamkonda", "Kazipet"],
+  Vijayawada: ["Benz Circle", "Patamata"],
+  Visakhapatnam: ["MVP Colony", "Gajuwaka"],
+  Bengaluru: ["Whitefield", "Yelahanka"],
+  Chennai: ["Anna Nagar", "Velachery"]
+};
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
@@ -73,15 +95,28 @@ const HeroSection = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.img
-              key={`image-${current}`}
-              src={slide.image}
-              alt="Sri Chaitanya School"
-              className="h-full w-full object-cover object-top"
-              initial={{ scale: 1.02 }}
-              animate={{ scale: 1.07 }}
-              transition={{ duration: 6.5, ease: "linear" }}
-            />
+            {slide.image.endsWith(".mp4") ? (
+  <video
+    key={`video-${current}`}
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="h-full w-full object-cover object-top"
+  >
+    <source src={slide.image} type="video/mp4" />
+  </video>
+) : (
+  <motion.img
+    key={`image-${current}`}
+    src={slide.image}
+    alt="Sri Chaitanya School"
+    className="h-full w-full object-cover object-top"
+    initial={{ scale: 1.02 }}
+    animate={{ scale: 1.07 }}
+    transition={{ duration: 6.5, ease: "linear" }}
+  />
+)}
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0)_38%,rgba(0,0,0,0.6)_100%)]" />
           </motion.div>
         </AnimatePresence>
@@ -174,58 +209,101 @@ const HeroSection = () => {
         <div className="container mx-auto px-6">
           <div className="rounded-[28px] bg-white shadow-[0_30px_80px_rgba(13,59,102,0.2),_0_18px_0_-6px_rgba(0,0,0,0.18)] border border-slate-100 p-6 md:p-8">
             <div className="grid gap-4 lg:grid-cols-[1fr_1fr_1fr_1fr_auto]">
-              <label className="text-sm font-semibold text-[hsl(var(--primary))]">
-                Select Board
-                <select className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))] shadow-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.35)] focus:border-[hsl(var(--primary)/0.45)]">
-                  <option>Select Board</option>
-                  <option>CBSE</option>
-                  <option>ICSE</option>
-                  <option>State Board</option>
-                </select>
-              </label>
 
-              <label className="text-sm font-semibold text-[hsl(var(--primary))]">
-                Select State
-                <select className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))] shadow-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.35)] focus:border-[hsl(var(--primary)/0.45)]">
-                  <option>Select State</option>
-                  <option>Telangana</option>
-                  <option>Andhra Pradesh</option>
-                  <option>Karnataka</option>
-                  <option>Tamil Nadu</option>
-                </select>
-              </label>
+{/* Board */}
+<label className="text-sm font-semibold text-[hsl(var(--primary))]">
+Select Board
+<select className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))] shadow-sm">
+<option>Select Board</option>
+<option>CBSE</option>
+<option>ICSE</option>
+<option>State Board</option>
+</select>
+</label>
 
-              <label className="text-sm font-semibold text-[hsl(var(--primary))]">
-                Select City
-                <select className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))] shadow-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.35)] focus:border-[hsl(var(--primary)/0.45)]">
-                  <option>Select City</option>
-                  <option>Hyderabad</option>
-                  <option>Bengaluru</option>
-                  <option>Chennai</option>
-                  <option>Delhi</option>
-                </select>
-              </label>
+{/* State */}
+<label className="text-sm font-semibold text-[hsl(var(--primary))]">
+Select State
+<select
+value={selectedState}
+onChange={(e)=>{
+setSelectedState(e.target.value);
+setSelectedCity("");
+setSelectedBranch("");
+}}
+className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))]"
+>
+<option value="">Select State</option>
+<option>Telangana</option>
+<option>Andhra Pradesh</option>
+<option>Karnataka</option>
+<option>Tamil Nadu</option>
+</select>
+</label>
 
-              <label className="text-sm font-semibold text-[hsl(var(--primary))]">
-                Select Branch
-                <select className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))] shadow-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.35)] focus:border-[hsl(var(--primary)/0.45)]">
-                  <option>Select Branch</option>
-                  <option>Jubilee Hills</option>
-                  <option>Madhapur</option>
-                  <option>Hitech City</option>
-                </select>
-              </label>
+{/* City */}
+<label className="text-sm font-semibold text-[hsl(var(--primary))]">
+Select City
+<select
+value={selectedCity}
+onChange={(e)=>{
+setSelectedCity(e.target.value);
+setSelectedBranch("");
+}}
+className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))]"
+>
+<option value="">Select City</option>
 
-              <div className="flex items-end">
-                <button className="w-full rounded-full bg-[hsl(var(--primary))] text-white font-semibold px-6 py-3 shadow-[0_16px_35px_rgba(13,59,102,0.25)] flex items-center justify-center gap-2">
-                  <Search className="h-4 w-4" />
-                  Find School
-                </button>
-              </div>
-            </div>
+{selectedState &&
+cities[selectedState]?.map((city)=>(
+<option key={city} value={city}>{city}</option>
+))}
 
+</select>
+</label>
+
+{/* Branch */}
+<label className="text-sm font-semibold text-[hsl(var(--primary))]">
+Select Branch
+<select
+value={selectedBranch}
+onChange={(e)=>setSelectedBranch(e.target.value)}
+className="mt-2 w-full rounded-full border border-[hsl(var(--primary)/0.25)] bg-white/95 px-4 py-2.5 text-sm text-[hsl(var(--primary))]"
+>
+<option value="">Select Branch</option>
+
+{selectedCity &&
+branches[selectedCity]?.map((branch)=>(
+<option key={branch} value={branch}>{branch}</option>
+))}
+
+</select>
+</label>
+
+{/* Button */}
+<div className="flex items-end">
+<button
+onClick={()=>{
+if(selectedBranch){
+localStorage.setItem("scs-location", selectedBranch);
+window.dispatchEvent(new Event("locationChange"));
+}
+}}
+className="w-full rounded-full bg-[hsl(var(--primary))] text-white font-semibold px-6 py-3 shadow-[0_16px_35px_rgba(13,59,102,0.25)] flex items-center justify-center gap-2"
+>
+<Search className="h-4 w-4"/>
+Find School
+</button>
+</div>
+
+</div>
+
+            {/* Popular Locations */}
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
-              <span className="text-[hsl(var(--primary))] font-semibold">Popular Locations:</span>
+              <span className="text-[hsl(var(--primary))] font-semibold">
+                Popular Locations:
+              </span>
+
               {["Hyderabad", "Bengaluru", "Chennai", "Mumbai", "Delhi"].map((city) => (
                 <span
                   key={city}
